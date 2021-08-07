@@ -1,15 +1,15 @@
 package com.productivity.calendar.auth.services;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import com.productivity.calendar.auth.model.RegistrationRequest;
-import com.productivity.calendar.auth.model.Role;
-import com.productivity.calendar.auth.model.User;
 import com.productivity.calendar.auth.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.productivity.calendar.auth.model.Role;
+import com.productivity.calendar.auth.model.User;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Service
 public class RegistrationService implements IRegistrationService {

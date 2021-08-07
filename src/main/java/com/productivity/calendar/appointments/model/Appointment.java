@@ -1,12 +1,9 @@
 package com.productivity.calendar.appointments.model;
 
-import com.productivity.calendar.appointments.repository.TypeRepository;
-import com.productivity.calendar.auth.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.productivity.calendar.auth.model.User;
 import javax.validation.constraints.NotNull;
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 

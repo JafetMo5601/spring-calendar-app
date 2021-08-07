@@ -1,15 +1,13 @@
 package com.productivity.calendar.auth.services;
 
-import com.productivity.calendar.auth.util.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import com.productivity.calendar.auth.util.JwtUtil;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.stream.Collectors;
+import java.util.List;
+
 
 @Service
 public class AuthenticationService implements IAuthenticationService {

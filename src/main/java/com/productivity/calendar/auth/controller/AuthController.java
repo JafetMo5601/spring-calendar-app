@@ -1,25 +1,16 @@
 package com.productivity.calendar.auth.controller;
 
-import com.productivity.calendar.auth.services.IAuthenticationService;
-import com.productivity.calendar.auth.services.IRegistrationService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import com.productivity.calendar.auth.repository.RoleRepository;
+import com.productivity.calendar.auth.services.IAuthenticationService;
+import com.productivity.calendar.auth.services.IRegistrationService;
 import com.productivity.calendar.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.productivity.calendar.auth.services.MyUserDetails;
 import org.springframework.security.core.Authentication;
-import com.productivity.calendar.auth.util.JwtUtil;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import com.productivity.calendar.auth.model.*;
-import java.util.stream.Collectors;
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -38,7 +29,6 @@ public class AuthController {
 
     @Autowired
     UserRepository userRepository;
-
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody AuthenticationRequest authenticationRequest) {
