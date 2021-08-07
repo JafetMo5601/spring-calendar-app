@@ -1,0 +1,5 @@
+{
+  "name": Calendar API",
+  "description": "A API for the Calendar application.",
+  "addons": [ "heroku-postgresql" ]
+}
