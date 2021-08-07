@@ -5,7 +5,6 @@ import com.productivity.calendar.appointments.service.IAppointmentService;
 import com.productivity.calendar.appointments.repository.TypeRepository;
 import com.productivity.calendar.appointments.model.CreationRequest;
 import com.productivity.calendar.auth.repository.UserRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import com.productivity.calendar.appointments.model.Appointment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -47,14 +47,9 @@ public class AppointmentController {
         return new ResponseEntity(appointmentService.retrieveAppointmentsByUserName(), HttpStatus.OK);
     }
 
-    @GetMapping("/retrieve/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<?> getAppointmentById(@PathVariable Long id) {
-        if (appointmentService.retrieveAppointmentById(id) != null) {
-            return new ResponseEntity(appointmentService.retrieveAppointmentById(id), HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<String>("Appointment not found.", HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("/test/")
+    public  String test() {
+        return "Hello World!";
     }
 
     @PostMapping("/create")
