@@ -61,7 +61,7 @@ public class AuthController {
                     "INSERT INTO public.types(id, color, name) VALUES (3, '#E3BC08', 'TYPE_VACATION');" +
                     "INSERT INTO roles(id, name) VALUES (1, 'ROLE_USER');" +
                     "INSERT INTO roles(id, name) VALUES (2, 'ROLE_MODERATOR');" +
-                    "INSERT INTO roles(id, name) VALUES (3, 'TYPE_ADMIN');")
+                    "INSERT INTO roles(id, name) VALUES (3, 'ROLE_ADMIN');")
                     .getSingleResult();
             System.out.println("Everything created!");
         }
