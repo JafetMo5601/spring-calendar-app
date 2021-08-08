@@ -91,8 +91,8 @@ public class AppointmentController {
         }
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<?> addNewAppointment() {
+    @GetMapping("/create")
+    public ResponseEntity<?> test2() {
         EntityManager session = entityManagerFactory.createEntityManager();
         try {
             session.createNativeQuery("INSERT INTO public.types(id, color, name) VALUES (1, '#AD2121', 'TYPE_APPOINTMENT');" +
