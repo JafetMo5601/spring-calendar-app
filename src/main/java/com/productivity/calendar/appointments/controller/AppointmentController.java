@@ -28,9 +28,6 @@ import java.util.List;
 public class AppointmentController {
 
     @Autowired
-    private EntityManagerFactory entityManagerFactory;
-
-    @Autowired
     private IAppointmentService appointmentService;
 
     @Autowired
@@ -88,27 +85,6 @@ public class AppointmentController {
             return ResponseEntity.ok(new MessageResponse("User deleted successfully!"));
         } else {
             return ResponseEntity.notFound().build();
-        }
-    }
-
-    @GetMapping("/create")
-    public ResponseEntity<?> test2() {
-        EntityManager session = entityManagerFactory.createEntityManager();
-        try {
-            session.createNativeQuery("INSERT INTO public.types(id, color, name) VALUES (1, '#AD2121', 'TYPE_APPOINTMENT');" +
-                    "INSERT INTO public.types(id, color, name) VALUES (2, '#1E90FF', 'TYPE_EVENT');" +
-                    "INSERT INTO public.types(id, color, name) VALUES (3, '#E3BC08', 'TYPE_VACATION');" +
-                    "INSERT INTO roles(id, name) VALUES (1, 'ROLE_USER');" +
-                    "INSERT INTO roles(id, name) VALUES (2, 'ROLE_MODERATOR');" +
-                    "INSERT INTO roles(id, name) VALUES (3, 'TYPE_ADMIN');")
-                    .getSingleResult();
-        }
-        catch (NoResultException e){
-            return null;
-        }
-        finally {
-            if(session.isOpen()) session.close();
-            return ResponseEntity.ok(new MessageResponse("Type created successfully!"));
         }
     }
 }
