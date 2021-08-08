@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
-public class CreationRequest {
+public class AppointmentCreationRequest {
 
     @NotBlank
     @NotNull
