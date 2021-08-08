@@ -3,7 +3,7 @@ package com.productivity.calendar.appointments.controller;
 import com.productivity.calendar.appointments.repository.AppointmentRepository;
 import com.productivity.calendar.appointments.service.IAppointmentService;
 import com.productivity.calendar.appointments.repository.TypeRepository;
-import com.productivity.calendar.appointments.model.CreationRequest;
+import com.productivity.calendar.appointments.model.AppointmentCreationRequest;
 import com.productivity.calendar.auth.repository.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import com.productivity.calendar.appointments.model.Appointment;
@@ -54,7 +54,7 @@ public class AppointmentController {
 
     @PostMapping("/create")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN') or hasRole('MODERATOR')")
-    public ResponseEntity<?> addNewAppointment(@Valid @RequestBody CreationRequest appointCreation) {
+    public ResponseEntity<?> addNewAppointment(@Valid @RequestBody AppointmentCreationRequest appointCreation) {
         if(appointmentService.createNewAppointment(appointCreation) != null) {
             appointmentRepository.save(appointmentService.createNewAppointment(appointCreation));
             return ResponseEntity.ok(new MessageResponse("Task created successfully!"));
@@ -65,7 +65,7 @@ public class AppointmentController {
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN') or hasRole('MODERATOR')")
-    public ResponseEntity<?> updateAppointment(@PathVariable Long id, @Valid @RequestBody CreationRequest requestAppointment) {
+    public ResponseEntity<?> updateAppointment(@PathVariable Long id, @Valid @RequestBody AppointmentCreationRequest requestAppointment) {
         if (appointmentService.patchAppointment(id, requestAppointment) != null) {
             appointmentRepository.save(appointmentService.patchAppointment(id, requestAppointment));
             return ResponseEntity.ok(new MessageResponse("Appointment updated."));

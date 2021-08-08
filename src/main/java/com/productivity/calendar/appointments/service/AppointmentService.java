@@ -1,22 +1,22 @@
 package com.productivity.calendar.appointments.service;
 
-import com.productivity.calendar.appointments.model.Appointment;
-import com.productivity.calendar.appointments.model.CreationRequest;
-import com.productivity.calendar.appointments.model.Type;
+import com.productivity.calendar.appointments.model.AppointmentCreationRequest;
 import com.productivity.calendar.appointments.repository.AppointmentRepository;
 import com.productivity.calendar.appointments.repository.TypeRepository;
-import com.productivity.calendar.auth.model.User;
-import com.productivity.calendar.auth.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import com.productivity.calendar.appointments.model.Appointment;
+import com.productivity.calendar.auth.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.productivity.calendar.appointments.model.Type;
+import com.productivity.calendar.auth.model.User;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Page;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 
 @Service
 public class AppointmentService implements IAppointmentService {
@@ -53,7 +53,7 @@ public class AppointmentService implements IAppointmentService {
     }
 
     @Override
-    public Appointment createNewAppointment(CreationRequest newRequest) {
+    public Appointment createNewAppointment(AppointmentCreationRequest newRequest) {
         if(!appointmentRepository.existsByTitle(newRequest.getTitle())){
             Appointment newAppointment = new Appointment(
                     newRequest.getTitle(),
@@ -70,7 +70,7 @@ public class AppointmentService implements IAppointmentService {
     }
 
     @Override
-    public Appointment patchAppointment(Long id, CreationRequest appointment) {
+    public Appointment patchAppointment(Long id, AppointmentCreationRequest appointment) {
         if(appointmentRepository.existsById(id)) {
             Appointment appointmentToUpdated = appointmentRepository.findById(id).get();
             appointmentToUpdated.setType(retrieveType(Long.parseLong(appointment.getType())));
