@@ -14,6 +14,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -22,6 +26,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/appointments")
 public class AppointmentController {
+
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
     @Autowired
     private IAppointmentService appointmentService;
@@ -81,6 +88,27 @@ public class AppointmentController {
             return ResponseEntity.ok(new MessageResponse("User deleted successfully!"));
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> addNewAppointment() {
+        EntityManager session = entityManagerFactory.createEntityManager();
+        try {
+            session.createNativeQuery("INSERT INTO public.types(id, color, name) VALUES (1, '#AD2121', 'TYPE_APPOINTMENT');" +
+                    "INSERT INTO public.types(id, color, name) VALUES (2, '#1E90FF', 'TYPE_EVENT');" +
+                    "INSERT INTO public.types(id, color, name) VALUES (3, '#E3BC08', 'TYPE_VACATION');" +
+                    "INSERT INTO roles(id, name) VALUES (1, 'ROLE_USER');" +
+                    "INSERT INTO roles(id, name) VALUES (2, 'ROLE_MODERATOR');" +
+                    "INSERT INTO roles(id, name) VALUES (3, 'TYPE_ADMIN');")
+                    .getSingleResult();
+        }
+        catch (NoResultException e){
+            return null;
+        }
+        finally {
+            if(session.isOpen()) session.close();
+            return ResponseEntity.ok(new MessageResponse("Type created successfully!"));
         }
     }
 }
