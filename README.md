@@ -1,4 +1,4 @@
-# Calendar Api
+# Calendar API
 
 ## Description
 
